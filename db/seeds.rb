@@ -46,11 +46,25 @@
 #   )
 # end
 
-10.times do
-  Payment.create!(
-    provider: Faker::Subscription.payment_method,
-    status: "Approved",
-    ref: Faker::Number.number(digits: 10),
-    amount: Faker::Number.decimal(l_digits: 3)
+# 10.times do
+#   Payment.create!(
+#     provider: Faker::Subscription.payment_method,
+#     status: "Approved",
+#     ref: Faker::Number.number(digits: 10),
+#     amount: Faker::Number.decimal(l_digits: 3)
+#   )
+# end
+
+10.times do |num|
+  product = Product.all.sample
+  quantity = rand(1..15)
+  total = product.price * quantity
+
+  Order.create!(
+    user_id: User.all.sample.id,
+    product_id: product.id,
+    payment_id: num + 1,
+    quantity: quantity,
+    total: total
   )
 end

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :batches
       resources :products
       resources :payments
+      resources :orders
     end
   end
 
