@@ -55,16 +55,25 @@
 #   )
 # end
 
-10.times do |num|
-  product = Product.all.sample
-  quantity = rand(1..15)
-  total = product.price * quantity
+# 10.times do |num|
+#   product = Product.all.sample
+#   quantity = rand(1..15)
+#   total = product.price * quantity
 
-  Order.create!(
+#   Order.create!(
+#     user_id: User.all.sample.id,
+#     product_id: product.id,
+#     payment_id: num + 1,
+#     quantity: quantity,
+#     total: total
+#   )
+# end
+
+10.times do
+  Review.create!(
     user_id: User.all.sample.id,
-    product_id: product.id,
-    payment_id: num + 1,
-    quantity: quantity,
-    total: total
+    product_id: Product.all.sample.id,
+    rating: rand(1..5),
+    comment: Faker::Lorem.paragraph(sentence_count: 3)
   )
 end

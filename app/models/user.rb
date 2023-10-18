@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   has_one :user_address
+  has_many :orders
 end
