@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :user_addresses
+      resources :categories
+      resources :batches
+      resources :products
+      resources :payments
     end
   end
 
