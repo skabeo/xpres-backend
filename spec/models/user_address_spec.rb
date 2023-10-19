@@ -38,5 +38,20 @@ RSpec.describe UserAddress, type: :model do
       )
       expect(user_address).to be_valid
     end
+
+    it 'address should have maximum 30 characters' do
+      user_address.address = 'Lorem Ipsum lorem ipsum lorem ipsum'
+      expect(user_address).to_not be_valid
+    end
+
+    it 'city should have maximum 30 characters' do
+      user_address.city = 'Lorem Ipsum lorem ipsum lorem ipsum'
+      expect(user_address).to_not be_valid
+    end
+
+    it 'tel_line should have maximum 10 characters' do
+      user_address.tel_line = '05516993211'
+      expect(user_address).to_not be_valid
+    end
   end
 end
