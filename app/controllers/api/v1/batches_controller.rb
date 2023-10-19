@@ -1,5 +1,5 @@
 class Api::V1::BatchesController < ApplicationController
-  before_action :set_batch, only: %i[ show update destroy ]
+  before_action :set_batch, only: %i[show update destroy]
 
   # GET /batches
   def index
@@ -39,13 +39,14 @@ class Api::V1::BatchesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_batch
-      @batch = Batch.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def batch_params
-      params.require(:batch).permit(:batch_number, :start_date, :end_date, :shipping_cost)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_batch
+    @batch = Batch.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def batch_params
+    params.require(:batch).permit(:batch_number, :start_date, :end_date, :shipping_cost)
+  end
 end
