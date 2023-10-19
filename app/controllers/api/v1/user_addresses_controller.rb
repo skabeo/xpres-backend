@@ -58,6 +58,6 @@ class Api::V1::UserAddressesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_address_params
-    params.require(:user_address).permit(:user_id, :address, :city, :tel_line, :tel_line2)
+    params.require(:user_address).permit(:user_id, :address, :city, :tel_line, :tel_line2, :image)
   end
 end
