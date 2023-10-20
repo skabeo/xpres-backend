@@ -38,5 +38,9 @@ RSpec.describe Order, type: :model do
       subject.total = 'hey'
       expect(subject).to_not be_valid
     end
+
+    it 'to be valid' do
+      expect(subject).to be_valid
+    end
   end
 end
