@@ -32,7 +32,13 @@ RSpec.describe User, type: :model do
     end
 
     it 'subject to be valid' do
-      expect(subject).to be_valid
+      user = User.create(
+        first_name: 'drake',
+        last_name: 'graham',
+        email: 'drake@test.com',
+        password: '123456'
+      )
+      expect(user).to be_valid
     end
   end
 end

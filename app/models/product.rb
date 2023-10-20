@@ -14,8 +14,8 @@ class Product < ApplicationRecord
   private
 
   def unique_name_within_batch
-    if self.class.where(name: name, batch_id: batch_id).where.not(id: id).exists?
-      errors.add(:name, 'already exists for this batch')
-    end
+    return unless self.class.where(name:, batch_id:).where.not(id:).exists?
+
+    errors.add(:name, 'already exists for this batch')
   end
 end

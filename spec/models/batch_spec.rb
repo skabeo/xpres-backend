@@ -2,18 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Batch, type: :model do
   describe 'Batch model' do
-
-    subject { Batch.new(
-      batch_number: 1,
-      start_date: '2023-10-10',
-      end_date: '2023-10-19',
-      shipping_cost: 100
-    ) }
+    subject do
+      Batch.new(
+        batch_number: 1,
+        start_date: '2023-10-10',
+        end_date: '2023-10-19',
+        shipping_cost: 100
+      )
+    end
 
     before { subject.save }
 
     it 'batch number should not be blank' do
-      subject.batch_number = nil 
+      subject.batch_number = nil
       expect(subject).to_not be_valid
     end
 
@@ -28,17 +29,17 @@ RSpec.describe Batch, type: :model do
     end
 
     it 'start date should not be blank' do
-      subject.start_date = nil 
+      subject.start_date = nil
       expect(subject).to_not be_valid
     end
 
     it 'end date should not be blank' do
-      subject.end_date = nil 
+      subject.end_date = nil
       expect(subject).to_not be_valid
     end
 
     it 'shipping cost should not be blank' do
-      subject.shipping_cost = nil 
+      subject.shipping_cost = nil
       expect(subject).to_not be_valid
     end
 

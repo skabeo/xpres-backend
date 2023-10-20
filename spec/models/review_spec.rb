@@ -5,12 +5,14 @@ RSpec.describe Review, type: :model do
     user = User.first
     product = Product.last
 
-    subject { Review.new(
-      user_id: user.id,
-      product_id: product.id,
-      rating: rand(1..5),
-      comment: Faker::Lorem.paragraph(sentence_count: 3)
-    )}
+    subject do
+      Review.new(
+        user_id: user.id,
+        product_id: product.id,
+        rating: rand(1..5),
+        comment: Faker::Lorem.paragraph(sentence_count: 3)
+      )
+    end
 
     it 'should have rating present' do
       subject.rating = nil

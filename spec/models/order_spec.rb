@@ -9,18 +9,20 @@ RSpec.describe Order, type: :model do
     quantity = rand(15..25)
     total_order = product.price.to_i * quantity
 
-    subject { Order.new(
-      user_id: user.id, 
-      product_id: product.id, 
-      payment_id: payment.id, 
-      quantity: quantity, 
-      total: total_order
-    ) }
+    subject do
+      Order.new(
+        user_id: user.id,
+        product_id: product.id,
+        payment_id: payment.id,
+        quantity:,
+        total: total_order
+      )
+    end
 
     before { subject.save }
 
     it 'quantity should be present' do
-      subject.quantity = nil 
+      subject.quantity = nil
       expect(subject).to_not be_valid
     end
 
@@ -30,7 +32,7 @@ RSpec.describe Order, type: :model do
     end
 
     it 'total should be present' do
-      subject.total = nil 
+      subject.total = nil
       expect(subject).to_not be_valid
     end
 

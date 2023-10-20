@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Product, type: :model do
   describe 'Product model' do
-
-    category = Category.first
-    batch = Batch.first
+    Category.first
+    Batch.first
     product = Product.last
 
     it 'product name should not be blank' do
@@ -38,7 +37,7 @@ RSpec.describe Product, type: :model do
     end
 
     it 'product should not has the same batch twice' do
-      product_one = Product.create(
+      Product.create(
         category_id: 9,
         batch_id: 47,
         name: Faker::Commerce.product_name,
