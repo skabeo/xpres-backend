@@ -18,7 +18,7 @@ class Api::V1::PaymentsController < ApplicationController
     @payment = Payment.new(payment_params)
 
     if @payment.save
-      render json: @payment, status: :created, location: @payment
+      render json: @payment, status: :created, location: api_v1_payment_path(@payment)
     else
       render json: @payment.errors, status: :unprocessable_entity
     end
@@ -47,6 +47,6 @@ class Api::V1::PaymentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def payment_params
-    params.require(:payment).permit(:povider, :status, :ref, :amount)
+    params.require(:payment).permit(:provider, :status, :ref, :amount)
   end
 end
