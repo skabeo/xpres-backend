@@ -7,13 +7,13 @@ class Api::V1::OrdersController < ApplicationController
     @orders = Order.all
 
     authorize! :read, @orders
-    render json: @orders.to_json(include: [:user, :product, :payment])
+    render json: @orders.to_json(include: %i[user product payment])
   end
 
   # GET /orders/1
   def show
     authorize! :read, @orders
-    render json: @order.to_json(include: [:user, :product, :payment])
+    render json: @order.to_json(include: %i[user product payment])
   end
 
   # POST /orders

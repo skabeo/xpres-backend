@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   enum role: %i[user admin]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
 
   has_one :user_address, dependent: :destroy
   has_many :orders, dependent: :destroy

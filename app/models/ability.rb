@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -13,6 +11,5 @@ class Ability
     end
 
     can :manage, :all if user.role == 'admin'
-
   end
 end
