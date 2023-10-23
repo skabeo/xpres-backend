@@ -1,5 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
   before_action :set_product, only: %i[show update destroy]
+  before_action :authenticate_user!, only: %i[create update destroy]
 
   # GET /products
   def index
@@ -13,12 +14,12 @@ class Api::V1::ProductsController < ApplicationController
     #   end
     # end
 
-    render json: @products
+    render json: @products.to_json(include: %i[category batch])
   end
 
   # GET /products/1
   def show
-    render json: @product
+    render json: @product.to_json(include: %i[category batch])
     # if @product.images.attached?
     #   render json: @product.as_json.merge(images: url_for(@product.image))
     # else
@@ -30,6 +31,7 @@ class Api::V1::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
+    authorize! :create, @product
     if @product.save
       render json: @product, status: :created, location: @product
     else
@@ -39,6 +41,8 @@ class Api::V1::ProductsController < ApplicationController
 
   # PATCH/PUT /products/1
   def update
+    authorize! :create, @product
+
     if @product.update(product_params)
       render json: @product
     else
@@ -48,6 +52,8 @@ class Api::V1::ProductsController < ApplicationController
 
   # DELETE /products/1
   def destroy
+    authorize! :destroy, @product
+
     @product.destroy
   end
 

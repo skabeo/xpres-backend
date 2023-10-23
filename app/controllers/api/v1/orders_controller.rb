@@ -1,16 +1,19 @@
 class Api::V1::OrdersController < ApplicationController
   before_action :set_order, only: %i[show update destroy]
+  before_action :authenticate_user!
 
   # GET /orders
   def index
     @orders = Order.all
 
-    render json: @orders
+    authorize! :read, @orders
+    render json: @orders.to_json(include: %i[user product payment])
   end
 
   # GET /orders/1
   def show
-    render json: @order
+    authorize! :read, @orders
+    render json: @order.to_json(include: %i[user product payment])
   end
 
   # POST /orders
