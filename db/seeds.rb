@@ -48,6 +48,7 @@
 
 # 10.times do
 #   Payment.create!(
+#     user_id: User.all.sample.id,
 #     provider: Faker::Subscription.payment_method,
 #     status: "Approved",
 #     ref: Faker::Number.number(digits: 10),

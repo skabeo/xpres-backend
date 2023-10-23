@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_one :user_address, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :payments
 
   validates :first_name, presence: true, length: { maximum: 25 }
   validates :last_name, presence: true, length: { maximum: 25 }
