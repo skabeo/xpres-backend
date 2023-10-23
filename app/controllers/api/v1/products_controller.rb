@@ -13,12 +13,12 @@ class Api::V1::ProductsController < ApplicationController
     #   end
     # end
 
-    render json: @products
+    render json: @products.to_json(include: [:category, :batch])
   end
 
   # GET /products/1
   def show
-    render json: @product
+    render json: @product.to_json(include: [:category, :batch])
     # if @product.images.attached?
     #   render json: @product.as_json.merge(images: url_for(@product.image))
     # else
