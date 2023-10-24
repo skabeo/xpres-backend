@@ -8,6 +8,9 @@ RSpec.describe 'Payment', type: :request do
       let!(:payment) { FactoryBot.create(:payment) }
 
       before do
+        @admin_user = FactoryBot.create(:user, role: 'admin')
+        sign_in @admin_user
+
         post '/api/v1/payments', params: {
           payment: {
             provider: payment.provider,
@@ -41,6 +44,9 @@ RSpec.describe 'Payment', type: :request do
 
     context 'with invalid parameters' do
       before do
+        @user = FactoryBot.create(:user)
+        sign_in @user
+        
         post '/api/v1/payments', params: {
           payment: {
             provider: '',
