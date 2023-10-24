@@ -46,7 +46,7 @@ RSpec.describe 'Payment', type: :request do
       before do
         @user = FactoryBot.create(:user)
         sign_in @user
-        
+
         post '/api/v1/payments', params: {
           payment: {
             provider: '',

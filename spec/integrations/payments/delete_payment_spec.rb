@@ -8,10 +8,10 @@ RSpec.describe 'Posts', type: :request do
       before do
         @user = FactoryBot.create(:user, role: 'admin')
         sign_in @user
-  
+
         delete "/api/v1/payments/#{payment.id}"
       end
-  
+
       it 'returns status code 204' do
         expect(response).to have_http_status(204)
       end
@@ -22,7 +22,7 @@ RSpec.describe 'Posts', type: :request do
       before do
         @user = FactoryBot.create(:user)
         sign_in @user
-        
+
         delete "/api/v1/payments/#{payment.id}"
       end
 

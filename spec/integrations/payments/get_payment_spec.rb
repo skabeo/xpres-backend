@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Payment', type: :request do
   describe 'GET /index' do
     context 'can view all payment when user is an admin' do
-
       before do
         @admin_user = FactoryBot.create(:user, role: 'admin')
         sign_in @admin_user

@@ -38,7 +38,7 @@ class Api::V1::ReviewsController < ApplicationController
   # DELETE /reviews/1
   def destroy
     authorize! :destroy, @review
-    
+
     @review.destroy
   end
 

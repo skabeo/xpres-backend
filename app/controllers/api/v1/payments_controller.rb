@@ -40,7 +40,7 @@ class Api::V1::PaymentsController < ApplicationController
   # DELETE /payments/1
   def destroy
     authorize! :destroy, @payment
-    
+
     @payment.destroy
   end
 
