@@ -1,5 +1,6 @@
 class Api::V1::UserAddressesController < ApplicationController
   before_action :set_user_address, only: %i[show update destroy]
+  before_action :authenticate_user!
 
   # GET /user_addresses
   def index
@@ -21,7 +22,7 @@ class Api::V1::UserAddressesController < ApplicationController
 
   # GET /user_addresses/1
   def show
-    render json: @user_address
+    render json: @user_address.to_json(include: [:user])
   end
 
   # POST /user_addresses

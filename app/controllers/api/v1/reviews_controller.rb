@@ -26,6 +26,8 @@ class Api::V1::ReviewsController < ApplicationController
 
   # PATCH/PUT /reviews/1
   def update
+    authorize! :update, @review
+
     if @review.update(review_params)
       render json: @review
     else
@@ -35,6 +37,8 @@ class Api::V1::ReviewsController < ApplicationController
 
   # DELETE /reviews/1
   def destroy
+    authorize! :destroy, @review
+    
     @review.destroy
   end
 

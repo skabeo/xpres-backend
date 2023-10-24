@@ -1,16 +1,20 @@
 class Api::V1::PaymentsController < ApplicationController
   before_action :set_payment, only: %i[show update destroy]
+  before_action :authenticate_user!
 
   # GET /payments
   def index
     @payments = Payment.all
 
-    render json: @payments
+    authorize! :read, @payments
+    render json: @payments.to_json(include: [:user])
   end
 
   # GET /payments/1
   def show
-    render json: @payment
+    authorize! :read, @payment
+
+    render json: @payment.to_json(include: [:user])
   end
 
   # POST /payments
