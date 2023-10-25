@@ -35,6 +35,7 @@ class Api::V1::CategoriesController < ApplicationController
 
   # DELETE /categories/1
   def destroy
+    authorize! :destroy, @category
     @category.destroy
   end
 
