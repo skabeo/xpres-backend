@@ -28,6 +28,6 @@ end
 
 FactoryBot.define do
   factory :category do
-    name { 'Jewellery' }
+    name { Faker::Lorem.word }
   end
 end
