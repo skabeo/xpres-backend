@@ -25,3 +25,9 @@ FactoryBot.define do
     password { '123456' }
   end
 end
+
+FactoryBot.define do
+  factory :category do
+    name { 'Jewellery' }
+  end
+end
