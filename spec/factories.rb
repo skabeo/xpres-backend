@@ -42,7 +42,7 @@ FactoryBot.define do
     payment_id do
       user_payment = Payment.find_by(user_id: user.id)
 
-      user_payment ? user_payment.id : 24
+      user_payment ? user_payment.id : 1
     end
     quantity { rand(1..15) }
     total { product.price * quantity }
