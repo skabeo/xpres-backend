@@ -7,10 +7,10 @@ RSpec.describe 'Orders', type: :request do
       before do
         @user = FactoryBot.create(:user, role: 'admin')
         sign_in @user
-  
+
         get '/api/v1/orders'
       end
-  
+
       it 'displays order' do
         expect(response).to have_http_status(:success)
       end
@@ -20,7 +20,7 @@ RSpec.describe 'Orders', type: :request do
       before do
         @user = FactoryBot.create(:user)
         sign_in @user
-  
+
         get '/api/v1/orders'
       end
 
