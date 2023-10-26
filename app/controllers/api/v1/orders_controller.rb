@@ -38,6 +38,7 @@ class Api::V1::OrdersController < ApplicationController
 
   # DELETE /orders/1
   def destroy
+    authorize! :destroy, @order
     @order.destroy
   end
 
