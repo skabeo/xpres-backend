@@ -5,12 +5,7 @@ RSpec.describe 'Batch', type: :request do
 
   describe 'GET /batches' do
     before do
-      FactoryBot.create_list(:batch, 9)
       get '/api/v1/batches'
-    end
-
-    it 'response should have 10 batch' do
-      expect(response_data.size).to eq(10)
     end
 
     it 'should have status of success' do

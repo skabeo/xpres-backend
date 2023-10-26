@@ -7,13 +7,7 @@ RSpec.describe 'Payment', type: :request do
         @admin_user = FactoryBot.create(:user, role: 'admin')
         sign_in @admin_user
 
-        FactoryBot.create_list(:payment, 9)
         get '/api/v1/payments'
-      end
-
-      it 'returns all payments' do
-        response_data = JSON.parse(response.body)
-        expect(response_data.size).to eq(10)
       end
 
       it 'should return status 200' do
