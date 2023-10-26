@@ -27,7 +27,7 @@
 
 # 4.times do |num|
 #   Batch.create!(
-#     batch_number: num,
+#     batch_number: num + 1,
 #     start_date: Faker::Date.between(from: '2023-10-01', to: '2023-10-18'),
 #     end_date: Faker::Date.between(from: '2023-10-19', to: '2023-10-31'),
 #     shipping_cost: rand(100..500)
@@ -42,7 +42,8 @@
 #     description: Faker::Lorem.paragraph(sentence_count: 4),
 #     brand: Faker::Commerce.brand,
 #     weight_kg: Faker::Number.decimal(l_digits: 2),
-#     price: Faker::Number.decimal(l_digits: 2, r_digits: 3)
+#     price: Faker::Number.decimal(l_digits: 2, r_digits: 3),
+#     quantity: rand(100..599)
 #   )
 # end
 
@@ -70,11 +71,11 @@
 #   )
 # end
 
-10.times do
-  Review.create!(
-    user_id: User.all.sample.id,
-    product_id: Product.all.sample.id,
-    rating: rand(1..5),
-    comment: Faker::Lorem.paragraph(sentence_count: 3)
-  )
-end
+# 10.times do
+#   Review.create!(
+#     user_id: User.all.sample.id,
+#     product_id: Product.all.sample.id,
+#     rating: rand(1..5),
+#     comment: Faker::Lorem.paragraph(sentence_count: 3)
+#   )
+# end
