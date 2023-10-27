@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Order', type: :request do
-  describe "DELETE /api/v1/orders/#{order.id}" do
+  describe "DELETE /orders" do
     let(:order) { FactoryBot.create(:order) }
 
     context 'normal users cant delete an order' do

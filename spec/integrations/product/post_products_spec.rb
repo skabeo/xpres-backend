@@ -25,7 +25,6 @@ RSpec.describe 'Product', type: :request do
       end
 
       it 'have a created response' do
-        p product.quantity.class
         expect(response).to have_http_status(:created)
       end
 

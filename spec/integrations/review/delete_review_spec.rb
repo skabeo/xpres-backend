@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Review', type: :request do
-  describe "DELETE /api/v1/review/#{review.id}" do
+  describe "DELETE /review" do
     let(:user) { FactoryBot.create(:user, role: 'admin') }
     let(:review) { FactoryBot.create(:review) }
 
