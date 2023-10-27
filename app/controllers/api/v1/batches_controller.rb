@@ -18,7 +18,7 @@ class Api::V1::BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
 
     if @batch.save
-      render json: @batch, status: :created, location: @batch
+      render json: @batch, status: :created, location: api_v1_batch_path(@batch)
     else
       render json: @batch.errors, status: :unprocessable_entity
     end
