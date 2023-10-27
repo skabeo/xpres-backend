@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { maximum: 250 }
   validates :price, presence: true, numericality: true
   validates :quantity, presence: true, numericality: true
-  validate :unique_name_within_batch
+  # validate :unique_name_within_batch
 
   private
 

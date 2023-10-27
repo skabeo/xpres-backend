@@ -48,3 +48,16 @@ FactoryBot.define do
     total { product.price * quantity }
   end
 end
+
+FactoryBot.define do
+  factory :product do
+    category_id { Category.all.sample.id }
+    batch_id { Batch.all.sample.id }
+    name { Faker::Commerce.product_name }
+    description { Faker::Lorem.paragraph(sentence_count: 4) }
+    brand { Faker::Commerce.brand }
+    weight_kg { Faker::Number.decimal(l_digits: 2) }
+    price { Faker::Number.decimal(l_digits: 2, r_digits: 3) }
+    quantity { rand(100..599) }
+  end
+end
