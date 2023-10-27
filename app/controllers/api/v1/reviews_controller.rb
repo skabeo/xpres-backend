@@ -1,5 +1,6 @@
 class Api::V1::ReviewsController < ApplicationController
   before_action :set_review, only: %i[show update destroy]
+  before_action :authenticate_user, only: %i[update destroy]
 
   # GET /reviews
   def index
@@ -18,7 +19,7 @@ class Api::V1::ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      render json: @review, status: :created, location: @review
+      render json: @review, status: :created, location: api_v1_review_path(@review)
     else
       render json: @review.errors, status: :unprocessable_entity
     end

@@ -61,3 +61,12 @@ FactoryBot.define do
     quantity { rand(100..599) }
   end
 end
+
+FactoryBot.define do
+  factory :review do
+    user_id { User.all.sample.id }
+    product_id { Product.all.sample.id }
+    rating { rand(1..5) }
+    comment { Faker::Lorem.paragraph(sentence_count: 3) }
+  end
+end
