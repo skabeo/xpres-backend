@@ -6,7 +6,7 @@ RSpec.describe 'User address', type: :request do
 
     before do
       sign_in user
-      
+
       get '/api/v1/user_addresses'
     end
 

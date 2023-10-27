@@ -30,7 +30,7 @@ class Api::V1::UserAddressesController < ApplicationController
     @user_address = UserAddress.new(user_address_params)
 
     if @user_address.save
-      render json: @user_address, status: :created, location: @user_address
+      render json: @user_address, status: :created, location: api_v1_user_address_path(@user_address)
     else
       render json: @user_address.errors, status: :unprocessable_entity
     end

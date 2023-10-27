@@ -70,3 +70,13 @@ FactoryBot.define do
     comment { Faker::Lorem.paragraph(sentence_count: 3) }
   end
 end
+
+FactoryBot.define do
+  factory :user_address do
+    user_id { User.all.sample.id }
+    address { Faker::Address.street_address }
+    city { Faker::Address.city }
+    tel_line { '0230916381' }
+    tel_line2 { '0551876539' }
+  end
+end
