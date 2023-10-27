@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Product', type: :request do
-  describe "DELETE /products" do
+  describe 'DELETE /products' do
     let(:product) { FactoryBot.create(:product) }
 
     context 'only admins can delete a product' do
