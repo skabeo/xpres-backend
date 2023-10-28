@@ -1,0 +1,136 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/batches":
+    get:
+      summary: Retrieves all batches
+      tags:
+      - Batches
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+    post:
+      summary: Creates a batch
+      tags:
+      - Batches
+      parameters: []
+      responses:
+        '201':
+          description: Batch created
+        '422':
+          description: Unprocessable Entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch_number:
+                  type: string
+                start_date:
+                  type: string
+                  format: date
+                end_date:
+                  type: string
+                  format: date
+                shipping_cost:
+                  type: number
+              required:
+              - batch_number
+              - start_date
+              - end_date
+              - shipping_cost
+  "/api/v1/batches/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: Deletes a batch
+      tags:
+      - Batches
+      responses:
+        '204':
+          description: Batch deleted
+  "/api/v1/auth/signup":
+    post:
+      summary: Creates a new user
+      tags:
+      - Registation
+      parameters: []
+      responses:
+        '200':
+          description: User created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - first_name
+              - last_name
+              - email
+              - password
+  "/api/v1/auth/login":
+    post:
+      summary: User sign-in
+      tags:
+      - Sessions
+      parameters: []
+      responses:
+        '200':
+          description: User signed in
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/api/v1/auth/logout":
+    delete:
+      summary: User log-out
+      tags:
+      - Sessions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer Token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User logged out
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
