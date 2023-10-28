@@ -16,12 +16,12 @@ RSpec.describe 'Orders', type: :request do
       end
     end
 
-    context 'cant fetch orders as a normal user' do
+    context 'normal users cant fetch orders of other users' do
       before do
         @user = FactoryBot.create(:user)
         sign_in @user
 
-        get '/api/v1/orders'
+        get '/api/v1/orders/112'
       end
 
       it 'restrict orders' do

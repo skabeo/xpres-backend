@@ -4,10 +4,13 @@ class Api::V1::PaymentsController < ApplicationController
 
   # GET /payments
   def index
-    @payments = Payment.all
+    @payments = if current_user.admin?
+                  Payment.all
+                else
+                  Payment.where(user_id: current_user.id)
+                end
 
-    authorize! :read, @payments
-    render json: @payments.to_json(include: [:user])
+    render json: @payments
   end
 
   # GET /payments/1

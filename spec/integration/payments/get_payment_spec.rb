@@ -20,7 +20,7 @@ RSpec.describe 'Payment', type: :request do
         @user = FactoryBot.create(:user)
         sign_in @user
 
-        get '/api/v1/payments'
+        get '/api/v1/payments/1'
       end
 
       it 'should have forbidden http status' do
