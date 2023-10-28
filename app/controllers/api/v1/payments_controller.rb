@@ -4,11 +4,11 @@ class Api::V1::PaymentsController < ApplicationController
 
   # GET /payments
   def index
-    if current_user.admin?
-      @payments = Payment.all
-    else
-      @payments = Payment.where(user_id: current_user.id)
-    end
+    @payments = if current_user.admin?
+                  Payment.all
+                else
+                  Payment.where(user_id: current_user.id)
+                end
 
     render json: @payments
   end

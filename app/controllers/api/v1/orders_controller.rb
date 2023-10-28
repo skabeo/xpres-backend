@@ -4,11 +4,11 @@ class Api::V1::OrdersController < ApplicationController
 
   # GET /orders
   def index
-    if current_user.admin?
-      @orders = Order.all
-    else
-      @orders = Order.where(user_id: current_user.id)
-    end
+    @orders = if current_user.admin?
+                Order.all
+              else
+                Order.where(user_id: current_user.id)
+              end
 
     render json: @orders.to_json(include: %i[user product payment])
   end
@@ -16,7 +16,7 @@ class Api::V1::OrdersController < ApplicationController
   # GET /orders/1
   def show
     authorize! :read, @order
-    
+
     render json: @order.to_json(include: %i[user product payment])
   end
 
