@@ -39,4 +39,19 @@ describe 'Orders API' do
       end
     end
   end
+
+  path '/api/v1/orders/{id}' do
+    delete 'Delete an order' do
+      tags 'Orders'
+      parameter name: :id, in: :path, type: :integer, required: true
+
+      response '204', 'Order deleted successfully' do
+        run_test!
+      end
+
+      response '403', 'Forbidden - Normal users cannot delete orders' do
+        run_test!
+      end
+    end
+  end
 end

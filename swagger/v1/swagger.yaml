@@ -159,6 +159,22 @@ paths:
               - payment_id
               - quantity
               - total
+  "/api/v1/orders/{id}":
+    delete:
+      summary: Delete an order
+      tags:
+      - Orders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Order deleted successfully
+        '403':
+          description: Forbidden - Normal users cannot delete orders
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
