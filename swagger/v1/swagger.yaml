@@ -115,6 +115,50 @@ paths:
           description: category deleted
         '404':
           description: category not found
+  "/api/v1/orders":
+    get:
+      summary: Retrieve all orders
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+        '403':
+          description: Forbidden - Normal users cannot fetch orders of other users
+    post:
+      summary: Create an order as an admin
+      tags:
+      - Orders
+      parameters: []
+      responses:
+        '201':
+          description: Order created successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+                payment_id:
+                  type: integer
+                quantity:
+                  type: integer
+                total:
+                  type: number
+              required:
+              - user_id
+              - product_id
+              - payment_id
+              - quantity
+              - total
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
