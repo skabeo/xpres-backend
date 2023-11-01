@@ -30,7 +30,7 @@ describe 'Orders API' do
           quantity: { type: :integer },
           total: { type: :number }
         },
-        required: ['user_id', 'product_id', 'payment_id', 'quantity', 'total']
+        required: %w[user_id product_id payment_id quantity total]
       }
 
       response '201', 'Order created successfully' do

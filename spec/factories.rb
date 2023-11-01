@@ -73,7 +73,7 @@ end
 
 FactoryBot.define do
   factory :user_address do
-    user_id { User.all.sample.id } 
+    user_id { User.all.sample.id }
     address { Faker::Address.street_address }
     city { Faker::Address.city }
     tel_line { '0230916381' }

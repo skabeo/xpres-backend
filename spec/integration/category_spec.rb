@@ -8,10 +8,10 @@ describe 'Categories API' do
 
       response '200', 'successful' do
         schema(type: :object, properties: {
-          data: {
-            type: :array
-          }
-        })
+                 data: {
+                   type: :array
+                 }
+               })
 
         run_test!
       end

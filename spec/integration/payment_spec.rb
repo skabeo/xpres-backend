@@ -31,7 +31,7 @@ describe 'Payments API' do
           ref: { type: :string },
           amount: { type: :number, format: :float }
         },
-        required: ['provider', 'status', 'ref', 'amount']
+        required: %w[provider status ref amount]
       }
 
       response '201', 'Payment created' do
