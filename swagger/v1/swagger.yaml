@@ -247,6 +247,41 @@ paths:
           description: Product deleted
         '403':
           description: Forbidden
+  "/api/v1/reviews":
+    get:
+      summary: Retrieves all reviews
+      tags:
+      - Reviews
+      responses:
+        '200':
+          description: Reviews retrieved
+    post:
+      summary: Creates a review
+      tags:
+      - Reviews
+      parameters: []
+      responses:
+        '201':
+          description: Review created
+        '403':
+          description: Forbidden
+  "/api/v1/reviews/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Review ID
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: Deletes a review
+      tags:
+      - Reviews
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
