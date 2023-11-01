@@ -175,6 +175,44 @@ paths:
           description: Order deleted successfully
         '403':
           description: Forbidden - Normal users cannot delete orders
+  "/api/v1/payments":
+    get:
+      summary: Retrieve all payments
+      tags:
+      - Payments
+      responses:
+        '200':
+          description: Admin can view all payments
+        '403':
+          description: Access restricted as a normal user
+        '401':
+          description: User should be unauthorized when not signed in
+    post:
+      summary: Create a payment
+      tags:
+      - Payments
+      parameters: []
+      responses:
+        '201':
+          description: Payment created
+        '422':
+          description: Unprocessable Entity
+  "/api/v1/payments/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Delete a payment
+      tags:
+      - Payments
+      responses:
+        '204':
+          description: Payment deleted
+        '403':
+          description: Forbidden
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
