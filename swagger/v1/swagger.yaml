@@ -36,7 +36,7 @@ paths:
               type: object
               properties:
                 batch_number:
-                  type: string
+                  type: number
                 start_date:
                   type: string
                   format: date
@@ -64,6 +64,224 @@ paths:
       responses:
         '204':
           description: Batch deleted
+  "/api/v1/categories":
+    get:
+      summary: Retrieves all categories
+      tags:
+      - Categories
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+    post:
+      summary: Create a category
+      tags:
+      - Categories
+      parameters: []
+      responses:
+        '200':
+          description: category created
+        '422':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+  "/api/v1/categories/{id}":
+    delete:
+      summary: Delete a category
+      tags:
+      - Categories
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: category deleted
+        '404':
+          description: category not found
+  "/api/v1/orders":
+    get:
+      summary: Retrieve all orders
+      tags:
+      - Orders
+      responses:
+        '200':
+          description: Orders retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+        '403':
+          description: Forbidden - Normal users cannot fetch orders of other users
+    post:
+      summary: Create an order as an admin
+      tags:
+      - Orders
+      parameters: []
+      responses:
+        '201':
+          description: Order created successfully
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+                payment_id:
+                  type: integer
+                quantity:
+                  type: integer
+                total:
+                  type: number
+              required:
+              - user_id
+              - product_id
+              - payment_id
+              - quantity
+              - total
+  "/api/v1/orders/{id}":
+    delete:
+      summary: Delete an order
+      tags:
+      - Orders
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Order deleted successfully
+        '403':
+          description: Forbidden - Normal users cannot delete orders
+  "/api/v1/payments":
+    get:
+      summary: Retrieve all payments
+      tags:
+      - Payments
+      responses:
+        '200':
+          description: Admin can view all payments
+        '403':
+          description: Access restricted as a normal user
+        '401':
+          description: User should be unauthorized when not signed in
+    post:
+      summary: Create a payment
+      tags:
+      - Payments
+      parameters: []
+      responses:
+        '201':
+          description: Payment created
+        '422':
+          description: Unprocessable Entity
+  "/api/v1/payments/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Delete a payment
+      tags:
+      - Payments
+      responses:
+        '204':
+          description: Payment deleted
+        '403':
+          description: Forbidden
+  "/api/v1/products":
+    get:
+      summary: Retrieves all products
+      tags:
+      - Products
+      responses:
+        '200':
+          description: Products retrieved
+    post:
+      summary: Creates a product
+      tags:
+      - Products
+      parameters: []
+      responses:
+        '201':
+          description: Product created
+        '403':
+          description: Forbidden
+  "/api/v1/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Deletes a product
+      tags:
+      - Products
+      responses:
+        '204':
+          description: Product deleted
+        '403':
+          description: Forbidden
+  "/api/v1/reviews":
+    get:
+      summary: Retrieves all reviews
+      tags:
+      - Reviews
+      responses:
+        '200':
+          description: Reviews retrieved
+    post:
+      summary: Creates a review
+      tags:
+      - Reviews
+      parameters: []
+      responses:
+        '201':
+          description: Review created
+        '403':
+          description: Forbidden
+  "/api/v1/reviews/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: Review ID
+      required: true
+      schema:
+        type: integer
+    delete:
+      summary: Deletes a review
+      tags:
+      - Reviews
+      responses:
+        '204':
+          description: No Content
+        '403':
+          description: Forbidden
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
@@ -130,7 +348,7 @@ paths:
         '200':
           description: User logged out
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: 127.0.0.1:3000/
