@@ -213,6 +213,40 @@ paths:
           description: Payment deleted
         '403':
           description: Forbidden
+  "/api/v1/products":
+    get:
+      summary: Retrieves all products
+      tags:
+      - Products
+      responses:
+        '200':
+          description: Products retrieved
+    post:
+      summary: Creates a product
+      tags:
+      - Products
+      parameters: []
+      responses:
+        '201':
+          description: Product created
+        '403':
+          description: Forbidden
+  "/api/v1/products/{id}":
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: Deletes a product
+      tags:
+      - Products
+      responses:
+        '204':
+          description: Product deleted
+        '403':
+          description: Forbidden
   "/api/v1/auth/signup":
     post:
       summary: Creates a new user
