@@ -17,7 +17,7 @@ class Api::V1::UserAddressesController < ApplicationController
       end
     end
 
-    render json: user_addresses_images
+    render json: @user_addresses.to_json(include: %i[user])
   end
 
   # GET /user_addresses/1
